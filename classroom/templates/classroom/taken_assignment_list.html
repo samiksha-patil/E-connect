@@ -1,0 +1,39 @@
+{% extends "classroom/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+ 
+<div class="card">
+    <table class="table mb-0">
+      <thead>
+        <tr>
+         <th>Student</th>
+          <th>Submitted Date</th>
+          <th>View Assignment Solution</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+         
+        {% for solution in solutions %}
+          <tr>
+            <td>{{ solution.user }}</td>
+            <td>{{ solution.created_date }}</td>
+         
+            
+            <td><a href="{{ solution.pdf.url }}" class="btn btn-info btn-sm" target="_blank">view</a></td>
+            <td><a href="{% url 'ass_grade' solution.pk %}"  class="btn btn-primary btn-sm">grade</a>
+              
+            </td>
+          </tr>
+       
+  
+        {% empty %}
+          <tr>
+            <td class="bg-light text-center font-italic" colspan="3">Nobody has submiteed the assignmet yet.</td>
+          </tr>
+        {% endfor %}
+      
+      </tbody>
+    </table>
+  </div>
+  {% endblock content %}

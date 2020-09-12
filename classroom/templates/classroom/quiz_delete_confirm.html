@@ -1,0 +1,15 @@
+
+{% extends "classroom/base.html" %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+  <div class="content-section">
+  <h2 class="mb-3">Confirm deletion</h2>
+  <p class="lead">Are you sure you want to delete the quiz? There is no going back.</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger btn-lg">Yes, I'm sure</button>
+    <a href="{% url 'quiz_change' quiz.pk %}" class="btn btn-outline-secondary btn-lg" role="button">Nevermind</a>
+  </form>
+</div>
+{% endblock %}

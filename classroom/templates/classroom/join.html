@@ -1,0 +1,29 @@
+{% extends "classroom/base.html" %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+<div class="content-section">
+    <div class="row">
+        <div class="col-md-5 ml-4">
+            <br>
+    Ask your teacher for class code, then enter it here
+<form class="form-inline"  method="post">
+    
+    <input class="form-control mr-sm-2" type="text" name="text" required="True">
+
+    {% csrf_token %}
+       
+    <button type="submit" class="btn btn-primary">Submit  <i class="fas fa-paper-plane"> </i></button>
+    </form>
+    </div>
+    <div class="col-md-6">
+    <img  class="img-fluid" src="{% static 'images/join.png' %}" width="500px">
+</div>
+</div>
+</div>
+    </div>
+    
+    
+</div>
+    {% endblock content %}

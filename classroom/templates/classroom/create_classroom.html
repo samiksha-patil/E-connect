@@ -1,0 +1,27 @@
+{% extends "classroom/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1><b>Create Classroom</b>  </h1>
+<br>
+<div class="row">
+    <div class="col-md-6">
+<div class="content-section">
+    <form method="post">
+        {% csrf_token %}
+        <fieldset class="form-group">
+
+            {{ form|crispy }}
+        </fieldset>
+            
+        <div class="form-group">
+            <button type="submit" class="btn btn-info">Create Classroom</button>
+        </div>
+
+    </form>
+</div></div>
+<div class="col-md-6">
+    <img class="img-fluid" src="{% static 'images/create.png' %}" width="700px">
+</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,26 @@
+{% extends "classroom/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-12">
+<div class="content-section">
+    <div class="row">
+        <div class="col-md-5 ml-4">
+            <br>
+<h2 >Teacher : {{ object.teacher}}</h2>
+<h3>Subject : {{ object.subject}}</h3>
+<br>
+
+<a href="{{ object.get_add_to_cart_url }}" class="btn btn-secondary btn   my-0 p" >
+    Join classroom
+    
+</a>
+</div>
+
+<div class="col-md-5">
+<img src="{% static 'images/discuss.png' %}" width="500px">
+</div>
+</div></div>
+
+{% endblock content %}

@@ -1,0 +1,54 @@
+
+<!-- Classic tabs -->
+
+
+
+
+
+
+<!--Navbar-->
+<nav class="navbar navbar-expand-sm navbar-dark nav tabs-cyan justify-content-md-center classic-tabs">
+
+  <!-- Navbar brand -->
+  <a class="navbar-brand" href=""></a>
+
+  <!-- Collapse button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+    aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Collapsible content -->
+  <div class="collapse navbar-collapse" id="basicExampleNav">
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-link" href="{% url 'detail' pk=object.pk %}">Discussion
+         
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'detail_Quiz' pk=object.pk %}">Quiz</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'detail_assignment' pk=object.pk %}">Assignment</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'detail_announcement' pk=object.pk %}">Announcement</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'classmates' pk=object.pk %}">People</a>
+      </li>
+
+      <!-- Dropdown -->
+      
+    </ul>
+    <!-- Links -->
+
+  </div>
+  <!-- Collapsible content -->
+
+</nav>

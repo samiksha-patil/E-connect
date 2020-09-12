@@ -1,0 +1,56 @@
+{% extends "classroom/base.html" %}
+
+{% block content %}
+{% load static %}
+{% include "classroom/navbar.html" %}
+
+
+<h2 class="mt-4">Teacher : {{ object.teacher}}</h2>
+<h3>Subject : {{ object.subject}}</h3>
+
+
+
+{% if object.teacher == request.user %}
+
+<a href="{% url 'announcement_add' pk=object.pk %}" class="btn btn-secondary mb-4 waves-effect waves-light">
+  
+    <i class="fas fa-clipboard-list"></i>  &nbsp;  Announce / Post Materials
+  </a>
+ <br>
+{% endif %}
+
+    {% for announce in teachercreate.annnouncement.all %}
+    <div class="content-section">
+        <p class="align-middle"> <b>Title :</b> {{ announce.title }}</td>
+          {% if announce.docs %}
+      <div class="align-middle" ><b>PPT/ docs :</b><a href="{{ announce.docs.url }}" class="btn btn-info" target="_blank">view</a></div>
+      
+           {% endif %}
+      <br>
+      {% if announce.link %}
+      <div class="align-middle" ><b>Link :</b><a href="{{ announce.link }}"  target="_blank">{{ announce.link }}</a></div>
+      <br>
+      {% endif %}
+      {% if announce.description %}
+      <p  class="align-middle"><b>Description:</b> {{ announce.description|linebreaks }}</p>
+      {% endif %}
+      <hr>
+      <small class="align-middle text-muted">{{ announce.created_date }}</small>
+    
+    
+   
+</div>   
+    
+  {% empty %}
+  <hr>
+      <td class="bg-light text-center font-italic" colspan="5"><i>No Announcements Yet.</i></td><br>
+      
+      <img src="{% static 'images/Checklist.png' %}" class="rounded mx-auto d-block"  width="300px">
+    
+  {% endfor %}
+
+
+
+
+
+{% endblock content %}

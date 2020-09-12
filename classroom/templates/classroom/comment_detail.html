@@ -1,0 +1,52 @@
+{% extends "classroom/base.html" %}
+
+{% block content %}
+
+<div class="content-section">
+    <article class="media ">
+        <img class="rounded-circle mt-2 article-img" src="{{ comment.user.profile.image.url }}" />
+    <div class="media-body">
+        
+        <a class="mr-2" href="">{{ object.user }}</a>
+        <small class="text-muted">{{ object.created_date }}</small>
+        <hr>
+
+
+        <p>{{ object.comment|linebreaks }}</p>
+    </div>
+    </div>
+</div>
+</article>
+
+
+</div>  </div>
+<a href="{% url 'add_answer_to_comment' pk=comment.pk %}" class="btn purple-gradient waves-effect waves-light">
+    <i class="fas fa-comments left"></i>
+    <span>add Comment</span>
+ </a>
+
+
+{% for comment in comment.answer.all %}
+<div class="comment">
+    <article class="media ">
+        <img class="rounded-circle mt-2 article-img" src="{{ comment.user.profile.image.url }}" />
+        <div class="media-body">
+            <div class="media-body">
+                {% if comment.user == comment.item.user%}
+                <span class="badge purple mr-1">teacher</span>
+                {% endif %}
+                <a class="mr-2" href="">{{ comment.user }}</a>
+                <small class="text-muted">{{ comment.created_date }}</small>
+                <hr>
+
+
+                <p>{{ comment.comment|linebreaks }}</p>
+            </div>
+            </div>
+        </div>
+        </article>
+
+
+    </div>  </div>
+{% endfor %}
+{% endblock content %}

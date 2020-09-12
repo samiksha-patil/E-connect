@@ -1,0 +1,25 @@
+
+{% extends "classroom/base.html" %}
+
+{% block content %}
+
+
+
+<h2 class="font-weight-bold text-secondary mb-3">Teacher:</h2><hr>
+<div class="content-section">
+    <img class="rounded-circle mt-2 article-img" src="{{teacher.teacher.profile.image.url }}" />
+{{ teacher.teacher }}
+</div>
+<br>
+<h2 class="font-weight-bold pink-text mb-3">Students:</h2><hr>
+<div class="content-section">
+
+    <br>
+{% for student in students %}
+
+
+    <img class="rounded-circle mt-2 article-img" src="{{ student.user.profile.image.url }}" />
+{{ student.user }}<hr>
+{% endfor %}
+</div>
+{% endblock content %}

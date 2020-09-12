@@ -1,0 +1,29 @@
+
+{% extends "classroom/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+
+  <form action="./result" method="post">
+    <h2 class="mb-3">{{ quiz.name }}</h2>
+    {% for question in questions %}
+    <p class="lead">{{ forloop.counter }}.  {{ question.text }}</p>
+    {% for answer in answers %}
+    {% if answer.question.text == question.text %}
+    <p><input type="radio" name="{{ answer.question.id }}" value="{{ answer.text }}" required="True">{{answer.text}}</p>
+    {% endif %}
+   
+    {% endfor %}
+    {% endfor %}
+   
+    
+  
+  
+      {% csrf_token %}
+     
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    {% endblock content %}
+  
+  

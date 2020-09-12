@@ -1,0 +1,58 @@
+{% extends "classroom/base.html" %}
+
+{% block content %}
+
+
+{% include "classroom/navbar.html" %}
+
+
+
+
+
+
+
+<div class="mx-auto" style="width:200px;">
+<div class="fr justify-content-md-center">
+<centre>
+
+</centre>
+</div>
+</div>
+<h2 class="mt-4">Teacher : {{ object.teacher}}</h2>
+<h3>Subject : {{ object.subject}}</h3>
+
+
+
+
+<a href="{% url 'add_comment_to_room' pk=object.pk %}" class="btn btn-secondary">
+    <i class="fas fa-comments left"></i>
+    <span>add Comment</span>
+ </a>
+ <br>
+{% for comment in teachercreate.comment.all %}
+                
+
+                  <article class="media content-section">
+                    <img class="rounded-circle mt-2 article-img" src="{{ comment.user.profile.image.url }}" />
+                    <div class="media-body">
+                {% if comment.user == object.teacher %}
+                <span class="badge purple mr-1">teacher</span>
+                {% endif %}
+                <a class="mr-2" href="">{{ comment.user }}</a>
+                <small class="text-muted">{{ comment.created_date }}</small>
+                <hr>
+
+
+                <a class="text-dark" href="{% url 'comment_detail' comment.id %}">{{ comment.comment|linebreaks }}</p>
+            </div>
+       </article>
+
+    </div>
+
+
+{% endfor %}
+
+
+
+
+{% endblock content %}

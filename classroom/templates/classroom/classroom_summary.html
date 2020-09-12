@@ -1,0 +1,110 @@
+{% extends "classroom/base.html" %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <h2 class="ml-2">Classrooms you have joined</h2><hr>
+    <div class=" mt-2 mb-5"></div>
+      
+       
+    <div class="row">       
+{% for order_item in object.items.all %}
+
+
+<a href="{% url 'detail' order_item.item.pk %}">
+  <div class="col-md-4 mb-4">
+<div class="card testimonial-card waves-effect waves-light">
+
+<!-- Background color -->
+<div class="card-up indigo  lighten-1"></div>
+
+<!-- Avatar -->
+<div class="avatar mx-auto white">
+  <img src="{{ order_item.item.teacher.profile.image.url }}" class="rou"
+      alt="woman avatar">
+  </div>
+
+  <!-- Content -->
+  <div class="card-body">
+    <!-- Name -->
+    <h4 class="card-title">Teacher: {{ order_item.item.teacher }}</h4>
+    <hr>
+    <!-- Quotation -->
+    <div class="text-muted">
+    <p>Subject: {{ order_item.item.subject }}
+    </p>
+  </div>
+  </div>
+  <a class="btn btn-secondary" href="{% url 'remove_from_cart' order_item.item.pk %}">unenroll</a>
+</a>
+</div>
+</div>
+
+<!-- Card -->
+  {% empty %}
+  <div class="content-section">
+    <a class="btn btn-secondary" href="{% url 'add' %}">Join Room</a><hr>
+      <p colspan="5">YOU havent joined any classroom</p>
+      
+    </div>
+  {% endfor %}
+  
+</div>
+
+
+    <h2 class="ml-2">Clasroom Created</h2><hr>
+    <div class=" mt-2 mb-5"></div>
+      
+       
+
+  <div class="row">  
+  {% for teach in teacher %}
+  <a href="{% url 'detail' teach.pk %}">
+
+ 
+
+<div class="col-md-4 mb-4">
+  <div class="card testimonial-card">
+  
+  <!-- Background color -->
+  <div class="card-up peach-gradient lighten-1"></div>
+  
+  <!-- Avatar -->
+  <div class="avatar mx-auto white">
+    <img src="{{ teach.teacher.profile.image.url }}" class="rou"
+    alt="woman avatar">
+</div>
+
+<!-- Content -->
+<div class="card-body">
+  <!-- Name -->
+  <h4 class="card-title">Teacher: {{ teach.teacher }}</h4>
+  <hr>
+  <!-- Quotation -->
+  <div class="text-muted">
+  <p>Subject: {{ teach.subject }}
+  </p>
+  code: {{ teach.code }} <h6 class="text-muted"> <i>(share this with students to join classroom)</i></h6> 
+</div>
+</div>
+
+<a class="btn btn-secondary" href="{% url 'room-delete' teach.pk %}">Delete </a>
+</a>
+</a>
+
+</div>
+</div>
+</a>
+  {% empty %}
+  <div class="content-section">
+    <a class="btn btn-secondary" href="{% url 'create_room' %}">Create Room</a><hr>
+     <div ><p >You havent created any classroom</p></div>
+    </div>
+  
+  {% endfor %}
+</tbody></table></div></div></div>
+  <!-- Card -->
+
+
+
+  {% endblock content %}

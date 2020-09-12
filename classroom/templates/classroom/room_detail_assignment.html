@@ -1,0 +1,94 @@
+{% extends "classroom/base.html" %}
+
+{% block content %}
+{% load static %}
+{% include "classroom/navbar.html" %}
+
+
+<h2 class="mt-4">Teacher : {{ object.teacher}}</h2>
+<h3>Subject : {{ object.subject}}</h3>
+
+
+
+{% if object.teacher == request.user %}
+
+<a href="{% url 'assignment_add' pk=object.pk %}" class="btn btn-secondary mb-4 waves-effect waves-light">
+  
+  <i class="far fa-file-alt">  </i>   add Assignment 
+  </a>
+ <br>
+
+
+ <div class="card">
+    <table class="table mb-0">
+      <thead>
+        <tr>
+          <th>Assignment</th>
+          <th>Description</th>
+          <th>Created Date</th>
+          
+          
+        </tr>
+      </thead>
+      <tbody>
+
+  {% for ass in teachercreate.assignment.all %}
+
+  
+  <tr>
+    <td class="align-middle" ><a href="{{ ass.pdf.url }}" target="_blank">View assignment</a></td>
+    <td class="align-middle">{{ ass.description }}</td>
+    <td class="align-middle">{{ ass.created_date }}</td>
+    
+    <td class="text-right">
+      <a href="{% url 'ass_dashboard' ass.pk %}" class="btn btn-primary">See Solution of students</a>
+    </td>
+  </tr>
+
+{% empty %}
+  <tr>
+    <td class="bg-light text-center font-italic" colspan="5">You haven't created any Assignment yet.</td>
+  </tr>
+  
+{% endfor %}
+</tbody>
+</table>
+</div>
+
+
+
+  {% else %}
+
+
+ 
+    
+    {% for ass in assignment.all %}
+    <div class="content-section">
+      <div class="align-middle" ><a href="{{ ass.pdf.url }}" class="btn btn-info sm" target="_blank">View assignment</a></div>
+      <br>
+      <p  class="align-middle"><b>Description:</b> {{ ass.description }}</p>
+      
+      <p class="align-middle"> <b>Assignment created:</b> {{ ass.created_date }}</td>
+      <br>
+      <td class="text-right ">
+        <a href="{% url 'sol_ass' ass.pk %}" class="btn btn-primary float-right" ><i class="fas fa-paperclip"></i> Submit Assignment</a>
+      
+      <br>
+      <br>
+      
+   
+</div>   
+    
+  {% empty %}
+  <hr>
+      <td class="bg-light text-center font-italic" colspan="5"><i>No Assignments yet.</i></td><br>
+      
+      <img src="{% static 'images/Checklist.png' %}" class="rounded mx-auto d-block"  width="300px">
+    
+  {% endfor %}
+
+  {% endif %}
+
+
+
+{% endblock content %}
